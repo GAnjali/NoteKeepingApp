@@ -3,33 +3,32 @@ package com.notekeepingapp.NoteKeepingAppDemo.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
-//    @TableGenerator(name = "Users_Gen", table = "users", pkColumnName = "user_id", initialValue = 100, allocationSize = 100)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_id;
 
-    private String user_name;
+    private String username;
 
     private String password;
 
-    public User(){
+    public User() {
 
     }
 
-//    public User(String user_name, String password) {
-//        this.user_name = user_name;
-//        this.password = password;
-//    }
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public Integer getUser_id() {
         return user_id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -40,8 +39,8 @@ public class User {
         this.user_id = user_id;
     }
 
-    public void setUser_ame(String user_name) {
-        this.user_name = user_name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -52,7 +51,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "user_id=" + user_id +
-                ", user_name='" + user_name + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

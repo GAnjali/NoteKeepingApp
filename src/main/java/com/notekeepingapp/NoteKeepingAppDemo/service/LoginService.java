@@ -5,22 +5,30 @@ import com.notekeepingapp.NoteKeepingAppDemo.DAO.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoginService {
 
     @Autowired
     UserRepository userRepository;
-    public boolean isValidateUser(User user){
-        String enteredPassword = user.getPassword();
-        User registeredUser = userRepository.findByusername(user.getUser_name());
-        String passwordFromDB = "";
-        if(registeredUser!=null)
-            passwordFromDB = registeredUser.getPassword();
-        System.out.println(enteredPassword+" "+passwordFromDB);
-        return enteredPassword==passwordFromDB;
+
+    public boolean isValidCredentials(User user) {
+        System.out.println(user.getPassword());
+        System.out.println(getUserPasswordFromDB(user));
+        return user.getPassword().equals(getUserPasswordFromDB(user));
     }
 
-    public boolean isUserRegistered(User user){
-        return userRepository.findByusername(user.getUser_name())!=null;
+    public String getUserPasswordFromDB(User user) {
+        List<User> registeredUser = userRepository.findByUsername(user.getUsername());
+        if (registeredUser != null)
+            return registeredUser.get(0).getPassword();
+        return null;
+    }
+
+    public boolean isUserRegistered(User user) {
+        List<User> users = userRepository.findByUsername(user.getUsername());
+        System.out.println((users.size()));
+        return users.size() != 0;
     }
 }

@@ -1,17 +1,16 @@
 package com.notekeepingapp.NoteKeepingAppDemo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="notes")
+@Table(name = "notes")
 public class Note {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Size(min = 2)
@@ -23,13 +22,15 @@ public class Note {
     @Size(min = 10)
     private String noteContent;
 
-    @Past
     private Date createdAt;
 
-    public Note(int id, String noteTitle, String user, String noteContent, Date createdAt) {
+    public Note() {
+    }
+
+    public Note(int id, String user, String noteTitle, String noteContent, Date createdAt) {
         this.id = id;
         this.noteTitle = noteTitle;
-        this.user=user;
+        this.user = user;
         this.noteContent = noteContent;
         this.createdAt = createdAt;
     }
@@ -76,11 +77,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note{" +
-                "id=" + id +
-                ", user='" + user + '\'' +
-                ", noteContent='" + noteContent + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
+        return "Note{" + "id=" + id + ", user='" + user + '\'' + ", noteTitle='" + noteTitle + '\'' + ", noteContent='"
+                + noteContent + '\'' + ", createdAt=" + createdAt + '}';
     }
 }
