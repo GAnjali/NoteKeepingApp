@@ -23,14 +23,9 @@ public class LoginController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String showLogin() {
-        return "login";
-    }
-
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> showDashboard(@RequestBody User user) {
+    public ResponseEntity<Boolean> isValidUser(@RequestBody User user) {
         if (loginService.isUserRegistered(user)) {
             if (loginService.isValidCredentials(user))
                 return new ResponseEntity<>(true, HttpStatus.OK);
