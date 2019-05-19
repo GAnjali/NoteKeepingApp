@@ -5,8 +5,6 @@ import com.notekeepingapp.NoteKeepingAppDemo.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,12 +26,12 @@ public class NoteService {
         noteRepository.deleteById(id);
     }
 
-    public boolean isNoteExists(int id) {
-        return noteRepository.findNoteById(id) != null;
-    }
-
     public void updateNote(Note note) {
         noteRepository.updatenoteTitle(note.getId(), note.getNoteTitle());
         noteRepository.updatenoteContent(note.getId(), note.getNoteContent());
+    }
+
+    public boolean isNoteExists(int id) {
+        return noteRepository.findNoteById(id) != null;
     }
 }

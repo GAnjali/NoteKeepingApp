@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -22,10 +21,10 @@ public interface NoteRepository extends CrudRepository<Note, Integer> {
     @Transactional
     @Modifying
     @Query("Update Note t SET t.noteTitle=:title WHERE t.id=:id")
-    public void updatenoteTitle(@Param("id") int id, @Param("title") String title);
+    void updatenoteTitle(@Param("id") int id, @Param("title") String title);
 
     @Transactional
     @Modifying
     @Query("Update Note t SET t.noteContent=:content WHERE t.id=:id")
-    public void updatenoteContent(@Param("id") int id, @Param("content") String content);
+    void updatenoteContent(@Param("id") int id, @Param("content") String content);
 }

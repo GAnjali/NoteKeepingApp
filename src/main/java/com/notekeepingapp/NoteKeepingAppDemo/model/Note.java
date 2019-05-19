@@ -1,7 +1,6 @@
 package com.notekeepingapp.NoteKeepingAppDemo.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -39,16 +38,8 @@ public class Note {
         return noteTitle;
     }
 
-    public void setNoteTitle(String noteTitle) {
-        this.noteTitle = noteTitle;
-    }
-
     public void setUser(String user) {
         this.user = user;
-    }
-
-    public String getUser() {
-        return user;
     }
 
     public int getId() {
@@ -59,20 +50,8 @@ public class Note {
         return noteContent;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setNoteContent(String noteContent) {
-        this.noteContent = noteContent;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 
     @Override

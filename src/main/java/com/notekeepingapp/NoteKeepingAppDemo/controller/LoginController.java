@@ -9,23 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     LoginService loginService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String showLoginPage() {
-        return "redirect:/login";
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> isValidUser(@RequestBody User user) {
+    public ResponseEntity<Boolean> validateUserLogin(@RequestBody User user) {
         if (loginService.isUserRegistered(user)) {
             if (loginService.isValidCredentials(user))
                 return new ResponseEntity<>(true, HttpStatus.OK);
